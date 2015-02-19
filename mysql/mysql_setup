@@ -1,0 +1,18 @@
+#!/bin/bash
+
+echo "Touching up files..."
+
+touch /var/log/mysqld.log
+chown mysql:mysql /var/log/mysqld.log
+mkdir /var/run/mysqld
+chown mysql:mysql /var/run/mysqld
+
+echo "Starting MySQL Daemon"
+
+su mysql
+mysqld_safe &
+sleep 5
+
+echo "Securing installation ..."
+
+mysql -u root < /tmp/mysql_secure_installation.sql

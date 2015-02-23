@@ -1,4 +1,4 @@
-FROM oracle-jdk-8
+FROM dynamind/oracle-jdk:8
 
 # Settings used during setup
 ENV TOMCAT_VERSION 8.0.18

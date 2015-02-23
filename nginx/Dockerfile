@@ -6,6 +6,9 @@ FROM centos:7
 ENV NGINX_VERSION 1.6.2
 ENV GEOIP_VERSION 1.5.0-9
 
+# Normal way of installing NginX on CentOS:
+# RUN echo -e "[nginx]\nname=nginx repo\nbaseurl=http://nginx.org/packages/centos/\$releasever/\$basearch/\ngpgcheck=0\nenabled=1" > /etc/yum.repos.d/nginx.repo && yum -y install nginx
+
 RUN yum -y install wget tar git gcc make pcre pcre-devel zlib zlib-devel openssl openssl-devel GeoIP GeoIP-devel
 
 RUN cd /tmp &&\
@@ -36,16 +39,14 @@ RUN cd /tmp &&\
         --add-module=/tmp/nginx_upstream_check_module &&\
     useradd --no-create-home nginx &&\
     make && make install
-    
+
+# Clean up    
 RUN yum -y remove wget tar git gcc make pcre-devel zlib-devel openssl-devel GeoIP-devel
 
 RUN mkdir /etc/nginx/conf.d &&\
     mkdir -p /var/lib/nginx/tmp/client_body &&\
     chown -R nginx.nginx /var/lib/nginx/ &&\
     chmod -R 770 /var/lib/nginx/
-
-#RUN echo -e "[nginx]\nname=nginx repo\nbaseurl=http://nginx.org/packages/centos/\$releasever/\$basearch/\ngpgcheck=0\nenabled=1" > /etc/yum.repos.d/nginx.repo && \
-#    yum -y install nginx
 
 # enables GZIP
 COPY nginx/ /etc/nginx/

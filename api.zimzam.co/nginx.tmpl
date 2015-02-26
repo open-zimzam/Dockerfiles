@@ -37,13 +37,6 @@ server {
 	return 503;
 }
 
-# This is stop nginx from selecting the first server when no server_name matches
-server {
-	listen 443 ssl default_server;
-	server_name _; # This is just an invalid value which will never trigger on a real hostname.
-	return 503;
-}
-
 {{ range $host, $containers := groupByMulti $ "Env.VIRTUAL_HOST" "," }}
 
 upstream {{ $host }} {

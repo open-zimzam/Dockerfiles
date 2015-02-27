@@ -1,6 +1,6 @@
-Automated nginx proxy for Docker containers using docker-gen, based on [https://github.com/jwilder/nginx-proxy]()
+Automated nginx proxy for Docker containers using docker-gen, based on [https://github.com/jwilder/nginx-proxy](https://github.com/jwilder/nginx-proxy)
 
-**Note** the reverse proxy is configured as sticky using a session-cookie (route). More information here: [https://bitbucket.org/nginx-goodies/nginx-sticky-module-ng]()
+**Note** the reverse proxy is configured as sticky using a session-cookie (route). More information here: [https://bitbucket.org/nginx-goodies/nginx-sticky-module-ng](https://bitbucket.org/nginx-goodies/nginx-sticky-module-ng)
 
 # Getting started
     git clone https://github.com/open-zimzam/Dockerfiles.git

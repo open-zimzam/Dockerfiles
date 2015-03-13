@@ -4,21 +4,14 @@ FROM centos:7
 RUN yum -y install http://www.percona.com/downloads/percona-release/redhat/0.1-3/percona-release-0.1-3.noarch.rpm && \
     yum -y install Percona-Server-client-56 Percona-Server-server-56
 
-COPY mysql_setup /tmp/
-COPY mysql_secure_installation.sql /tmp/
+#RUN mkdir /var/run/mysqld && chown mysql: /var/run/mysqld
 
-RUN sh /tmp/mysql_setup    
+COPY my.cnf /etc/mysql/my.cnf
 
-# Define mountable directories.
 VOLUME ["/etc/mysql", "/var/lib/mysql"]
 
-# Define working directory.
-WORKDIR /
+COPY mysql_setup /
+ENTRYPOINT ["/mysql_setup"]
 
-USER mysql
-
-# Define default command.
-CMD ["/usr/bin/mysqld_safe"]
-
-# Expose ports.
 EXPOSE 3306
+CMD ["mysqld"]

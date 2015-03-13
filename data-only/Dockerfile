@@ -1,0 +1,2 @@
+FROM scratch
+VOLUME ["/data"]

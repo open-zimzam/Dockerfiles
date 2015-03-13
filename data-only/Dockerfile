@@ -1,2 +1,1 @@
 FROM scratch
-VOLUME ["/data"]

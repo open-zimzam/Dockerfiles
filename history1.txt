@@ -1,0 +1,9 @@
+IMAGE               CREATED             CREATED BY                                      SIZE
+ba070f439fa8        3 minutes ago       /bin/sh -c wget ftp://ftp.graphicsmagick.org/   141.7 MB
+bcb338259595        15 minutes ago      /bin/sh -c wget http://downloads.webmproject.   35.56 MB
+e93597ccf11b        15 minutes ago      /bin/sh -c #(nop) ENV GM_VERSION=1.3.21         0 B
+e0d6339c7ecb        15 minutes ago      /bin/sh -c #(nop) ENV LIBWEBP_VERSION=0.4.3     0 B
+8c820b73ec8c        15 minutes ago      /bin/sh -c yum install wget tar gcc make libp   145.7 MB
+dade6cb4530a        5 weeks ago         /bin/sh -c #(nop) ADD file:b86804322639583717   210.1 MB
+5b12ef8fd570        5 months ago        /bin/sh -c #(nop) MAINTAINER The CentOS Proje   0 B
+511136ea3c5a        21 months ago                                                       0 B

@@ -15,5 +15,9 @@ RUN yum install -y wget tar gcc make libpng libjpeg libpng-devel libjpeg-devel &
     cd /tmp/GraphicsMagick-$GM_VERSION && \
     ./configure --enable-shared && make && make install && \
     echo 'Cleaning up' && \
+    yum remove -y wget tar gcc make libpng-devel libjpeg-devel && \
     rm -rf /tmp/* && \
-    yum remove -y wget tar gcc make libpng-devel libjpeg-devel
+    rm -rf /usr/local/share/doc/GraphicsMagick && \
+    rm -rf /usr/include && \
+    rm -rf /usr/local/include
+    

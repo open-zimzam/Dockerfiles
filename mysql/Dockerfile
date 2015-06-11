@@ -1,8 +1,13 @@
 FROM centos:7
 
+COPY percona-release-0.1-3.noarch.rpm /tmp/percona-release-0.1-3.noarch.rpm
+
 # Install Percona 5.6 (see: http://www.percona.com/doc/percona-server/5.6/installation/yum_repo.html)
-RUN yum -y install http://www.percona.com/downloads/percona-release/redhat/0.1-3/percona-release-0.1-3.noarch.rpm && \
+RUN yum -y install /tmp/percona-release-0.1-3.noarch.rpm && \
     yum -y install Percona-Server-client-56 Percona-Server-server-56
+    
+# Remove initial datadir (will be recreated in mysql_setup script)    
+RUN rm -rf /var/lib/mysql
 
 #RUN mkdir /var/run/mysqld && chown mysql: /var/run/mysqld
 

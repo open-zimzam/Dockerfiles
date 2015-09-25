@@ -1,6 +1,6 @@
 FROM dynamind/nginx
 
-ENV DOCKER_GEN_VERSION 0.3.6
+ENV DOCKER_GEN_VERSION 0.4.1
 
 # Install Forego (Foreman)
 RUN yum -y install wget tar && \

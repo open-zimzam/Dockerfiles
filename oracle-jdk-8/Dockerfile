@@ -3,8 +3,8 @@ FROM centos:7
 # Install latest Oracle JDK8
 # Check latest version: http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
 
-ENV JAVA_VERSION 8u45
-ENV JAVA_BUILD $JAVA_VERSION-b14
+ENV JAVA_VERSION 8u60
+ENV JAVA_BUILD $JAVA_VERSION-b27
 
 RUN yum -y install wget && \
     wget --no-cookies --no-check-certificate -P/tmp \

@@ -33,7 +33,6 @@ RUN cd /tmp &&\
         --group=nginx \
         --with-http_ssl_module \
         --with-http_geoip_module \
-        --with-http_spdy_module \
         --add-module=/tmp/nginx-upstream-fair \
         --add-module=/tmp/nginx-sticky-module-ng \
         --add-module=/tmp/nginx_upstream_check_module &&\

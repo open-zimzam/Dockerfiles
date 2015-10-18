@@ -3,7 +3,7 @@ FROM centos:7
 # Build NginX from source, include 3rd party modules: 
 # nginx-sticky-module-ng, nginx-upstream-check-module, geo-ip, gnosek-nginx-upstream-fair 
 
-ENV NGINX_VERSION 1.6.2
+ENV NGINX_VERSION 1.9.5
 ENV GEOIP_VERSION 1.5.0-9
 
 # Normal way of installing NginX on CentOS:

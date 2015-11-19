@@ -1,6 +1,5 @@
 # Getting started
     git clone https://github.com/open-zimzam/Dockerfiles.git
-    docker build -t oracle-jdk-8 Dockerfiles/oracle-jdk-8
     docker build -t tomcat-8 Dockerfiles/tomcat-8
 
 ## Run the container

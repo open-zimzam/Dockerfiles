@@ -1,7 +1,7 @@
 FROM dynamind/oracle-jdk:8
 
 # Settings used during setup
-ENV TOMCAT_VERSION 8.0.28
+ENV TOMCAT_VERSION 8.0.29
 ENV APR_VERSION 1.2.2
 ENV TOMCAT_XMS 512m
 ENV TOMCAT_XMX 512m
@@ -22,7 +22,8 @@ ENV JAVA_OPTS -Dfile.encoding=UTF-8 \
 # Install Tomcat in /usr/tomcat
 RUN useradd -r tomcat --shell /bin/false && \
     yum -y install wget tar && \
-    wget http://apache.mirror.triple-it.nl/tomcat/tomcat-8/v$TOMCAT_VERSION/bin/apache-tomcat-$TOMCAT_VERSION.tar.gz -P/tmp && \
+    curl -s "http://www.apache.org/dyn/closer.cgi/tomcat/?as_json=1" | grep -Po '\"preferred\": \"\K[^\"]+' > /tmp/mirror && \
+    APACHE_MIRROR=$(cat /tmp/mirror) && wget ${APACHE_MIRROR}tomcat/tomcat-8/v$TOMCAT_VERSION/bin/apache-tomcat-$TOMCAT_VERSION.tar.gz -P/tmp && \
     tar -xvzf /tmp/apache-tomcat-$TOMCAT_VERSION.tar.gz -C /tmp && \
     mv /tmp/apache-tomcat-$TOMCAT_VERSION $CATALINA_HOME && \
     rm /tmp/apache-tomcat-$TOMCAT_VERSION.tar.gz && \

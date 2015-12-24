@@ -2,7 +2,7 @@ FROM dynamind/oracle-jdk:8
 
 # Settings used during setup
 ENV TOMCAT_VERSION 8.0.30
-ENV APR_VERSION 1.2.2
+ENV APR_VERSION 1.2.3
 ENV TOMCAT_XMS 512m
 ENV TOMCAT_XMX 512m
 
@@ -38,7 +38,8 @@ COPY conf/ $CATALINA_HOME/conf/
 # Build APR Native library
 RUN echo "Building APR Native Library" && \
     yum -y install gcc make apr-devel openssl-devel && \
-    wget http://apache.mirror.triple-it.nl/tomcat/tomcat-connectors/native/$APR_VERSION/source/tomcat-native-$APR_VERSION-src.tar.gz -P/tmp && \
+    curl -s "http://www.apache.org/dyn/closer.cgi/tomcat/?as_json=1" | grep -Po '\"preferred\": \"\K[^\"]+' > /tmp/mirror && \
+    APACHE_MIRROR=$(cat /tmp/mirror) && wget ${APACHE_MIRROR}tomcat/tomcat-connectors/native/$APR_VERSION/source/tomcat-native-$APR_VERSION-src.tar.gz -P/tmp && \
     tar -xvzf /tmp/tomcat-native-$APR_VERSION-src.tar.gz -C /tmp && \
     cd /tmp/tomcat-native-$APR_VERSION-src/native && \
     ./configure --with-apr=/usr/bin/apr-1-config && make && make install && \

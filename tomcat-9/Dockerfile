@@ -23,7 +23,7 @@ ENV JAVA_OPTS -Dfile.encoding=UTF-8 \
 RUN useradd -r tomcat --shell /bin/false && \
     yum -y install wget tar && \
     curl -s "http://www.apache.org/dyn/closer.cgi/tomcat/?as_json=1" | grep -Po '\"preferred\": \"\K[^\"]+' > /tmp/mirror && \
-    APACHE_MIRROR=$(cat /tmp/mirror) && wget ${APACHE_MIRROR}tomcat/tomcat-8/v$TOMCAT_VERSION/bin/apache-tomcat-$TOMCAT_VERSION.tar.gz -P/tmp && \
+    APACHE_MIRROR=$(cat /tmp/mirror) && wget ${APACHE_MIRROR}tomcat/tomcat-9/v$TOMCAT_VERSION/bin/apache-tomcat-$TOMCAT_VERSION.tar.gz -P/tmp && \
     tar -xvzf /tmp/apache-tomcat-$TOMCAT_VERSION.tar.gz -C /tmp && \
     mv /tmp/apache-tomcat-$TOMCAT_VERSION $CATALINA_HOME && \
     rm /tmp/apache-tomcat-$TOMCAT_VERSION.tar.gz && \

@@ -123,6 +123,7 @@ server {
 
 	ssl_certificate /etc/nginx/certs/{{ (printf "%s.crt" $cert) }};
 	ssl_certificate_key /etc/nginx/certs/{{ (printf "%s.key" $cert) }};
+    ssl_dhparam /etc/nginx/dhparams.pem
 
 	add_header Strict-Transport-Security "max-age=31536000; includeSubdomains";
 

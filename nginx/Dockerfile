@@ -36,6 +36,7 @@ RUN yum -y install wget tar git gcc make pcre pcre-devel zlib zlib-devel openssl
         --add-module=/tmp/nginx_upstream_check_module &&\
     useradd --no-create-home nginx &&\
     make && make install && \
+    openssl dhparam -out /etc/nginx/dhparams.pem 2048 && \
     yum -y remove wget tar git gcc make pcre-devel zlib-devel openssl-devel GeoIP-devel
 
 RUN mkdir /etc/nginx/conf.d &&\

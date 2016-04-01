@@ -3,15 +3,13 @@ FROM centos:7
 # Build NginX from source, include 3rd party modules: 
 # nginx-sticky-module-ng, nginx-upstream-check-module, geo-ip, gnosek-nginx-upstream-fair 
 
-ENV NGINX_VERSION 1.9.5
-ENV GEOIP_VERSION 1.5.0-9
+ENV NGINX_VERSION 1.9.13
 
 # Normal way of installing NginX on CentOS:
 # RUN echo -e "[nginx]\nname=nginx repo\nbaseurl=http://nginx.org/packages/centos/\$releasever/\$basearch/\ngpgcheck=0\nenabled=1" > /etc/yum.repos.d/nginx.repo && yum -y install nginx
 
-RUN yum -y install wget tar git gcc make pcre pcre-devel zlib zlib-devel openssl openssl-devel GeoIP GeoIP-devel
-
-RUN cd /tmp &&\
+RUN yum -y install wget tar git gcc make pcre pcre-devel zlib zlib-devel openssl openssl-devel GeoIP GeoIP-devel && \
+    cd /tmp &&\
     git clone https://github.com/gnosek/nginx-upstream-fair.git &&\
     git clone https://bitbucket.org/nginx-goodies/nginx-sticky-module-ng.git &&\
     git clone https://github.com/yaoweibin/nginx_upstream_check_module.git &&\
@@ -37,10 +35,8 @@ RUN cd /tmp &&\
         --add-module=/tmp/nginx-sticky-module-ng \
         --add-module=/tmp/nginx_upstream_check_module &&\
     useradd --no-create-home nginx &&\
-    make && make install
-
-# Clean up    
-RUN yum -y remove wget tar git gcc make pcre-devel zlib-devel openssl-devel GeoIP-devel
+    make && make install && \
+    yum -y remove wget tar git gcc make pcre-devel zlib-devel openssl-devel GeoIP-devel
 
 RUN mkdir /etc/nginx/conf.d &&\
     mkdir -p /var/lib/nginx/tmp/client_body &&\

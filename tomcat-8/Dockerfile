@@ -2,7 +2,7 @@ FROM dynamind/oracle-jdk:8
 
 # Settings used during setup
 ENV TOMCAT_VERSION 8.0.33
-ENV APR_VERSION 1.2.5
+ENV APR_VERSION 1.2.6
 ENV TOMCAT_XMS 512m
 ENV TOMCAT_XMX 512m
 
